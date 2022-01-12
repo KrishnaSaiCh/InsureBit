@@ -3,9 +3,14 @@ import re
 from pdf2image import convert_from_path
 import pytesseract
 from pytesseract import Output
+import os
+TESSDATA_PREFIX = os.environ.get('TESSDATA_PREFIX', None)
 from PIL import Image, ImageEnhance, ImageFilter
-pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files (x86)/Tesseract-OCR/tesseract.exe'
-
+print('TESSDATA_PREFIX',TESSDATA_PREFIX)
+if TESSDATA_PREFIX:
+   pytesseract.pytesseract.tesseract_cmd = TESSDATA_PREFIX
+else:
+   pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files (x86)/Tesseract-OCR/tesseract.exe'
 
 def fetch_ocr(file_obj):
     images = convert_from_path(file_obj,
