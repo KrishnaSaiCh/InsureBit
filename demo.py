@@ -14,7 +14,7 @@ else:
 
 def fetch_ocr(file_obj):
     images = convert_from_path(file_obj,
-                               500, poppler_path=r'F:\insureBit\poppler-0.68.0\bin')
+                               500, poppler_path=r'.\poppler\bin')
     data = dict()
     for i, image in enumerate(images):
         img_index = 'page_'+str(i)
