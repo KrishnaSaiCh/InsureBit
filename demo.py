@@ -13,8 +13,7 @@ else:
    pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files (x86)/Tesseract-OCR/tesseract.exe'
 
 def fetch_ocr(file_obj):
-    images = convert_from_path(file_obj,
-                               500, poppler_path=r'.\poppler\bin')
+    images = convert_from_path(file_obj, 500, poppler_path=r'.\poppler\bin')
     data = dict()
     for i, image in enumerate(images):
         img_index = 'page_'+str(i)
