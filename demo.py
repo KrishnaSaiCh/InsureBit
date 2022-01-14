@@ -14,10 +14,10 @@ else:
 if POPPLER_PATH:
    poppler_path = POPPLER_PATH
 else:
-   poppler_path = r'./poppler-0.68.0/bin'
+   poppler_path = r'./poppler/bin'
 def fetch_ocr(file_obj):
     print('POPPLER_PATH',poppler_path)
-    images = convert_from_path(file_obj, 500, , poppler_path=poppler_path)
+    images = convert_from_path(file_obj, 500, poppler_path=poppler_path)
     data = dict()
     for i, image in enumerate(images):
         img_index = 'page_'+str(i)
