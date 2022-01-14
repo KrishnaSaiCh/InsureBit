@@ -7,8 +7,6 @@ import os
 TESSDATA_PREFIX = os.environ.get('TESSDATA_PREFIX', None)
 POPPLER_PATH = os.environ.get('POPPLER_PATH', None)
 from PIL import Image, ImageEnhance, ImageFilter
-print('TESSDATA_PREFIX',TESSDATA_PREFIX)
-print('POPPLER_PATH',POPPLER_PATH)
 if TESSDATA_PREFIX:
    pytesseract.pytesseract.tesseract_cmd = TESSDATA_PREFIX
 else:
@@ -18,6 +16,7 @@ if POPPLER_PATH:
 else:
    poppler_path = r'./poppler-0.68.0/bin'
 def fetch_ocr(file_obj):
+    print('POPPLER_PATH',poppler_path)
     images = convert_from_path(file_obj, 500, poppler_path=poppler_path)
     data = dict()
     for i, image in enumerate(images):
