@@ -7,10 +7,6 @@ import os
 TESSDATA_PREFIX = os.environ.get('TESSDATA_PREFIX', None)
 POPPLER_PATH = os.environ.get('POPPLER_PATH', None)
 from PIL import Image, ImageEnhance, ImageFilter
-if TESSDATA_PREFIX:
-   pytesseract.pytesseract.tesseract_cmd = TESSDATA_PREFIX
-else:
-   pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files (x86)/Tesseract-OCR/tesseract.exe'
 if POPPLER_PATH:
    poppler_path = POPPLER_PATH
 else:
