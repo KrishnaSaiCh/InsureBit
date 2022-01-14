@@ -7,6 +7,10 @@ import os
 TESSDATA_PREFIX = os.environ.get('TESSDATA_PREFIX', None)
 POPPLER_PATH = os.environ.get('POPPLER_PATH', None)
 from PIL import Image, ImageEnhance, ImageFilter
+if TESSDATA_PREFIX:
+   pytesseract.pytesseract.tesseract_cmd = TESSDATA_PREFIX
+else:
+   pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files (x86)/Tesseract-OCR/tesseract.exe'
 if POPPLER_PATH:
    poppler_path = POPPLER_PATH
 else:
@@ -18,15 +22,10 @@ def fetch_ocr(file_obj):
     for i, image in enumerate(images):
         img_index = 'page_'+str(i)
         data[img_index] = dict()
-        # fname = 'C:/Users/Triveni/Desktop/sai_project/image'+str(i)+'.png'
-        # image.save(fname, "PNG")
-
         im = image.filter(ImageFilter.MedianFilter())
         enhancer = ImageEnhance.Contrast(im)
         im = enhancer.enhance(2)
         im = im.convert('1')
-        # im.save('C:/Users/Triveni/Desktop/sai_project/temp2.jpg')
-
         text = pytesseract.image_to_string(im, config='--oem 3 --psm 6')
         dct = pytesseract.image_to_data(im, output_type=Output.DICT)
         keys = list(dct.keys())
